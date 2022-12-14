@@ -98,11 +98,13 @@ function createThunkMiddleware(extraArgument) {
 
 ```js
 <Route path='parent' element={<Parent />}>
+  <Route index element={<ParentIndex />} />
   <Route path='children' element={<Children />} />
 </Route>
 ```
 
-需要在parent Route的頁面加上`<Outlet />`，宣告需要render children的位置
+需要在parent Route的頁面加上`<Outlet />`，宣告需要render children的位置  
+`index (<ParentIndex />)`則是當路徑為`'/parent'`時，會在`<Outlet />`內的部分(可以理解為parent頁預設的child)
 
 ```js
 import { Outlet } from 'react-router-dom'
