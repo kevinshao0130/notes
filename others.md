@@ -130,6 +130,36 @@ NODE_OPTIONS=--openssl-legacy-provider
 
 # Gulp Task runner
 
+### 執行順序的問題
+ 
+gulp中每個task的callback func(通常叫做`done()`)，並不會等待上面的部分執行完才會觸發，算是為了告訴gulp可以執行下一個task了。[參考](https://stackoverflow.com/a/29695977)   
+
+> 那要如何確保task可以有async/await的效果呢
+
+1. [解法1](https://stackoverflow.com/a/70886817)，直接把task當作promise整個return回去，而不是使用`done()`。
+
+2. [解法2](https://stackoverflow.com/a/57366865)，`on('end')`
+
+```js
+// 解法1
+gulp.task('task', () => {
+  return doSomething()
+})
+
+// 解法2
+gulp.task('task', done => {
+  doSomething()
+  .on('end', done)
+})
+
+// instead of this
+gulp.task('task', done => {
+  doSomething()
+  done()
+})
+```
+
+
 <br>
 
 # webpack
