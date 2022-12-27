@@ -73,3 +73,21 @@ export interface Prop {
 ```
 
 <br>
+
+### intellisense
+
+在使用vs code開發Typescript時，export的變數或是物件在賦予型別的時候，可以加上註解說明  
+但是需要遵照JSDoc的規則，使用前綴2個`*`的多行註解  
+範例如下:  
+```js
+export interface Type {
+  /** 正確 */
+  correctType: string
+  /* 錯誤 */
+  wrongType: string
+}
+```
+![intellisense_correctType.png](/files/intellisense_correctType.png)  
+![intellisense_wrongType.png](/files/intellisense_wrongType.png)
+
+<br>
